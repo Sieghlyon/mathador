@@ -1,0 +1,15 @@
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\bin\Debug\Mathador.exe.config
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\bin\Debug\Mathador.exe
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\bin\Debug\Mathador.pdb
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\bin\Debug\Newtonsoft.Json.dll
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\bin\Debug\System.Data.SQLite.dll
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\bin\Debug\Newtonsoft.Json.xml
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.Properties.Resources.resources
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.csproj.GenerateResource.Cache
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.exe
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.pdb
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.Menu.resources
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.score_windows.resources
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.Game_windows.resources
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.Menu_windows.resources
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.csprojResolveAssemblyReference.cache
