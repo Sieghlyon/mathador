@@ -42,6 +42,7 @@
             this.suivant = new System.Windows.Forms.Button();
             this.annuler = new System.Windows.Forms.Button();
             this.score_player = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // number_3
@@ -133,10 +134,10 @@
             // cible
             // 
             this.cible.AutoSize = true;
-            this.cible.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cible.Location = new System.Drawing.Point(644, 61);
+            this.cible.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cible.Location = new System.Drawing.Point(641, 83);
             this.cible.Name = "cible";
-            this.cible.Size = new System.Drawing.Size(29, 31);
+            this.cible.Size = new System.Drawing.Size(36, 39);
             this.cible.TabIndex = 9;
             this.cible.Text = "0";
             // 
@@ -144,7 +145,7 @@
             // 
             this.watcher.AutoSize = true;
             this.watcher.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.watcher.Location = new System.Drawing.Point(56, 37);
+            this.watcher.Location = new System.Drawing.Point(44, 36);
             this.watcher.Name = "watcher";
             this.watcher.Size = new System.Drawing.Size(185, 55);
             this.watcher.TabIndex = 10;
@@ -174,16 +175,27 @@
             // 
             this.score_player.AutoSize = true;
             this.score_player.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score_player.Location = new System.Drawing.Point(1121, 55);
+            this.score_player.Location = new System.Drawing.Point(1120, 75);
             this.score_player.Name = "score_player";
             this.score_player.Size = new System.Drawing.Size(36, 39);
             this.score_player.TabIndex = 13;
             this.score_player.Text = "0";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1084, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 33);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "SCORE";
+            // 
             // Game_windows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.score_player);
             this.Controls.Add(this.annuler);
             this.Controls.Add(this.suivant);
@@ -221,5 +233,6 @@
         private System.Windows.Forms.Button suivant;
         private System.Windows.Forms.Button annuler;
         private System.Windows.Forms.Label score_player;
+        private System.Windows.Forms.Label label1;
     }
 }

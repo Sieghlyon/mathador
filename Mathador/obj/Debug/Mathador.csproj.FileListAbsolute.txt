@@ -12,4 +12,5 @@ D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.Menu.reso
 D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.score_windows.resources
 D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.Game_windows.resources
 D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.Menu_windows.resources
+D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.Resultat.resources
 D:\Bureau\Workspace\Visual Studio\Mathador\Mathador\obj\Debug\Mathador.csprojResolveAssemblyReference.cache

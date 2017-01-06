@@ -31,7 +31,8 @@ namespace Mathador
             {
                 Sauvegarder.sauve(number_1, number_2, number_3, number_4, number_5, number_cible);
             }
-            Console.WriteLine(solve.faisabilite);       
+
+            solve.afficher();
         }     
     }
 }

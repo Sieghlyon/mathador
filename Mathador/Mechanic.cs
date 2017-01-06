@@ -27,8 +27,7 @@ namespace Mathador
                 return (n_1 / n_2);
             }
             else
-            {
-                Console.WriteLine(n_1);
+            {                
                 return 0;
             }
             
@@ -37,26 +36,35 @@ namespace Mathador
         public int calcul_score(List<string> op)
         {
             int score_round = 0;
-            foreach(string i in op)
+            bool add = false;
+            bool sous = false;
+            bool mul = false;
+            bool div = false;
+
+            foreach (string i in op)
             {
                 if (i == "+")
                 {
                     score_round += 1;
+                    add = true;
                 }
                 if (i == "-")
                 {
                     score_round += 2;
+                    sous = true;
                 }
                 if (i == "*")
                 {
                     score_round += 1;
+                    mul = true;
                 }
                 if (i == "/")
                 {
                     score_round += 3;
+                    div = true;
                 }
             }
-            if (score_round == 7)
+            if (add == true && sous == true && mul == true && div == true )
             {
                 score_round = 13;
             }

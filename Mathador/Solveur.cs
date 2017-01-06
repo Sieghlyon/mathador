@@ -8,16 +8,18 @@ namespace Mathador
 {
     class Solveur
     {
-
-        
         private bool faisable = false;
         private int cible;
+        private List<Solution> list_sol;
+        
+        private int nbr_solution = 0;
 
         Mechanic calcul;
         public Solveur(int c)
         {
             cible = c;
             calcul = new Mechanic();
+            list_sol = new List<Solution>();
         }
 
         public bool faisabilite                                     
@@ -26,13 +28,15 @@ namespace Mathador
             set { faisable = value; }
         }
 
-        private void tester(int resultat)                                    
+        private void tester(int resultat, int op_g, int op_d, string opera)                                    
         {
             if (resultat == cible)
             {
                 faisable = true;
-                
+                list_sol.Add(new Solution(op_g, op_d, opera, resultat));
+                nbr_solution += 1;
             }
+            
         }
 
         /* fonction recursive de recherche pour tester la faisabilite
@@ -60,7 +64,8 @@ namespace Mathador
                             {
 
                                 cache[i] = calcul.calcul(operande_1, operande_2, k);
-                                tester(cache[i]);
+
+                                tester(cache[i], operande_1, operande_2, k);
 
                                 cache[j] = cache[taille - 1];
                                 recherche(cache, taille - 1);
@@ -73,8 +78,18 @@ namespace Mathador
                         }
                     }
                 }
-            }
-            
+            }          
         }
+
+        public void afficher()
+        {
+            foreach (var i in list_sol)
+            {
+                i.combinaison();
+
+            }
+            Console.WriteLine("nombre de solution =  " + nbr_solution);      
+        }
+
     }
 }

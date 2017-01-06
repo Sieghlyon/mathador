@@ -31,6 +31,7 @@
             this.to_score = new System.Windows.Forms.Button();
             this.to_game = new System.Windows.Forms.Button();
             this.pseudo = new System.Windows.Forms.TextBox();
+            this.prompt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // to_score
@@ -60,10 +61,20 @@
             this.pseudo.Size = new System.Drawing.Size(462, 20);
             this.pseudo.TabIndex = 2;
             // 
+            // prompt
+            // 
+            this.prompt.AutoSize = true;
+            this.prompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prompt.Location = new System.Drawing.Point(437, 62);
+            this.prompt.Name = "prompt";
+            this.prompt.Size = new System.Drawing.Size(0, 39);
+            this.prompt.TabIndex = 3;
+            // 
             // Menu_windows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.prompt);
             this.Controls.Add(this.pseudo);
             this.Controls.Add(this.to_game);
             this.Controls.Add(this.to_score);
@@ -79,5 +90,6 @@
         private System.Windows.Forms.Button to_score;
         private System.Windows.Forms.Button to_game;
         private System.Windows.Forms.TextBox pseudo;
+        private System.Windows.Forms.Label prompt;
     }
 }

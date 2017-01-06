@@ -12,15 +12,18 @@ namespace Mathador
 {
     public partial class Menu_windows : UserControl
     {
-        Score_windows score;
-        Game_windows game;
+        private Score_windows score;
+        public Game_windows game;
+        
         public Menu_windows()
         {
             InitializeComponent();
+            
         }
 
         private void to_score_Click(object sender, EventArgs e)
         {
+           
             score = new Score_windows();
             Controls.Clear();
             Controls.Add(score);
@@ -28,13 +31,15 @@ namespace Mathador
 
         private void to_game_Click(object sender, EventArgs e)
         {
+            
             if (pseudo.Text != "")
             {
+               
                 game = new Game_windows(pseudo.Text);
                 Controls.Clear();
                 Controls.Add(game);
             }
-            
+            prompt.Text = "Vous avez besoin de mettre un pseudo pour jouer !";
         }
     }
 }

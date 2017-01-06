@@ -76,6 +76,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resultat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resultat.Designer.cs">
+      <DependentUpon>Resultat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sauvegarder.cs" />
     <Compile Include="Score_windows.cs">
       <SubType>UserControl</SubType>
@@ -83,6 +89,7 @@
     <Compile Include="Score_windows.Designer.cs">
       <DependentUpon>Score_windows.cs</DependentUpon>
     </Compile>
+    <Compile Include="Solution.cs" />
     <Compile Include="Solveur.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="Sqlite_Data.cs" />
@@ -104,6 +111,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Resultat.resx">
+      <DependentUpon>Resultat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Score_windows.resx">
       <DependentUpon>Score_windows.cs</DependentUpon>
     </EmbeddedResource>

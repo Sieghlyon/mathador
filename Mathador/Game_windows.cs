@@ -18,10 +18,17 @@ namespace Mathador
         private List<string> ope_used;
         private List<Cancel_Data> cancel_array;
 
+        private List<int> temps_moyen = new List<int>();
+        private List<int> score_moyen = new List<int>();
+        private List<string> ope_moyen = new List<string>();
+        private int json_length;
+        
+        Generateur G = new Generateur();
         private bool trouver;
-        private int time_total = 18000;
+        private int time_total = 1800;
         private int[] array_tirage = new int[5] ;       // tirage dans un tableau
         private int valeur_cible ;
+        private int time_cache;
 
         private int score = 0;                  //score du joueur et pseudo
         private string name;
@@ -33,9 +40,12 @@ namespace Mathador
         private int nombre_2 = 0;
         private string operateur = "";
         private int first_val;                           // indice de la premiere operande
-        private int val_supp;                            // indice second operande a supprimer après calcul
+        private int res_int;                            // indice second operande a supprimer après calcul
 
-        Mechanic M = new Mechanic();                     // function separé dans une autre classe pour plus de lisibilite
+        private Mechanic M = new Mechanic();
+        private Random rnd = new Random();
+
+        // function separé dans une autre classe pour plus de lisibilite
         public Game_windows(string pseudo)
         {
             InitializeComponent();
@@ -43,7 +53,14 @@ namespace Mathador
             bouton = new Button[5] { number_1, number_2, number_3, number_4, number_5 };
             tab_op = new Button[4] { addition, soustraction, multiplication, division };
 
+            G.generer();
+
+            json_length = Sauvegarder.array_length();
+
+            ind_json = rnd.Next(0, json_length);
+
             Json_Data data = Sauvegarder.read(ind_json);
+
             valeur_cible = data.number_cible;
            
             for (int i = 0; i < 5; i++)
@@ -53,8 +70,12 @@ namespace Mathador
             
             ope_used = new List<string>();
 
-            ind_json += 1;
+            ind_json = rnd.Next(0,json_length);
 
+            score_moyen.Clear();
+            temps_moyen.Clear();
+            ope_moyen.Clear();
+            
         }
 
         protected override void OnLoad(EventArgs e)                    // initialization du timer
@@ -75,6 +96,8 @@ namespace Mathador
 
             cancel_array = new List<Cancel_Data>();
 
+            time_cache = time_total;
+
             base.OnLoad(e);
         }
 
@@ -87,7 +110,7 @@ namespace Mathador
             //update label
             watcher.Text = time;
 
-             if(time_total <= 0)
+            if(time_total <= 0)
             {
                 stop();
             }
@@ -95,25 +118,16 @@ namespace Mathador
 
         private void stop()                                 // fonction pour stopper toute activite a la fin du chrono
         {
+            Resultat R;
+            R = new Resultat(score, name, nbr_round, temps_moyen, score_moyen, ope_moyen);
+            Controls.Clear();
+            Controls.Add(R);
+
             watch.Enabled = false;
-
-            foreach (Button b in bouton)
-            {
-                b.Enabled = false;
-            }
-            foreach (Button tab in tab_op)
-            {
-                tab.Enabled = false;
-            }
-
-            suivant.Enabled = false;
-            annuler.Enabled = false;
-
-            SQLite.creer_BDD();
-            SQLite.write(name, score, nbr_round);
+            time_total = 1;
 
         }
-
+        
         private void E_verification()              //verifie si l'on a trouver la valeur
         {
             trouver = M.check_valeur(array_tirage, valeur_cible);
@@ -139,7 +153,7 @@ namespace Mathador
                 bouton[i].Text = array_tirage[i].ToString();
             }
 
-            ind_json += 1;
+            ind_json = rnd.Next(0, json_length);
             cancel_array.Clear();
 
             nombre_1 = 0;
@@ -148,20 +162,22 @@ namespace Mathador
 
             decolor();
             pressed = null;
+            time_cache = time_total;
 
+            suivant.Text = "Passer";
         }
 
         private void affichage(int indice, int valeur)                       // gestion de l'affichage des valeurs sur les boutons
         {
-            int supp = val_supp;
+            int res = res_int;
             for(int i = 0; i < 5; i++)
             {
-                if (i == indice)
+                if (i == res)
                 {
                     bouton[i].Text = valeur.ToString();
                     array_tirage[i] = valeur;
                 }
-                if (i == supp)
+                if (i == indice)
                 {
                     bouton[i].Text = "";
                     array_tirage[i] = 0;
@@ -200,7 +216,8 @@ namespace Mathador
         {
             foreach (Button b in bouton)
             {
-                b.BackColor = SystemColors.Control;               
+                b.BackColor = SystemColors.Control;
+                b.Enabled = true;             
             }
             foreach (Button tab in tab_op)
             {
@@ -217,7 +234,7 @@ namespace Mathador
                 affichage(first_val, calculer);               
                 E_verification();
                 ope_used.Add(operateur);
-                cancel_array.Add(new Cancel_Data(nombre_1, nombre_2, first_val, val_supp));
+                cancel_array.Add(new Cancel_Data(nombre_1, nombre_2, first_val, res_int));
             }
 
             nombre_1 = 0;
@@ -238,7 +255,7 @@ namespace Mathador
             else if (nombre_1 != 0 && operateur != "" && op == "null")
             {
                 nombre_2 = array_tirage[ind];
-                val_supp = ind;
+                res_int = ind;
                 select_elem(ind, false);
             }
             else if (operateur == op)
@@ -277,6 +294,7 @@ namespace Mathador
             cancel_array.Remove(cancel_array.Last());
         }
 
+       
         private void addition_Click(object sender, EventArgs e)
         {
             gestion_bouton(0, "+", addition);
@@ -327,9 +345,19 @@ namespace Mathador
             if (suivant.Text == "Suivant")
             {
                 score += M.calcul_score(ope_used);
+                score_moyen.Add(M.calcul_score(ope_used));
                 score_player.Text = score.ToString();
+
+                foreach (var i in ope_used)
+                {
+                    ope_moyen.Add(i);
+                }
+
+                temps_moyen.Add(time_cache - time_total);
+
                 next_turn();
                 nbr_round += 1;
+                ope_used.Clear();
             }
             else
             {

@@ -18,6 +18,8 @@ namespace Mathador
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Menu());
 
+            Generateur G = new Generateur();
+            G.generer();
         }
     }
 }
